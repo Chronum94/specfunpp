@@ -10,14 +10,15 @@ ctypedef fused ArgType:
 
 ctypedef fused OrderType:
   double
-  float
+  int
 
 cdef extern from "../../cyl_bessel_j/bessel_jvz.hpp":
   double bessel_cyl_jvz(double, double)
+  double bessel_cyl_jvz(int, double)
   double complex bessel_cyl_jvz(double, double complex)
 
 
-cpdef jvx(double v , double x):
+cpdef jvx(OrderType v , double x):
   return bessel_cyl_jvz(v, x)
 
 @cython.boundscheck(False)

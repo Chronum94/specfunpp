@@ -2,12 +2,17 @@
 
 #include "../../mathutils/ipow.hpp"
 #include <cmath>
-
+#include <type_traits>
 template <class OrderType, class ArgType>
-ArgType bessel_j_smallz(const OrderType v, const ArgType z) {
+ArgType bessel_j_smallz(OrderType v, const ArgType z) {
   using std::pow;
   using std::tgamma;
-
+  if (v < 0) {
+    if (std::is_integral<OrderType>::value) {
+      v = -v; // Switch order to positive.
+      const int negative_order_factor = ipow(-1, v);
+    }
+  }
   ArgType zhalf = z / 2.0;
   ArgType result = 0.0;
   double factorial_term = 1.0;
