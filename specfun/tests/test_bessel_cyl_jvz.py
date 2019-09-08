@@ -13,7 +13,7 @@ def test_jvx_smallx(v, z):
     assert np.isclose(jvz.jvx(v, z), float(besselj(v, z)), rtol=5e-15)
 
 @given(st.floats(min_value = 0.0, max_value = 200.0, allow_nan=False),
-st.complex_numbers(min_magnitude = 0, max_magnitude=10))
+st.complex_numbers(min_magnitude = 0, max_magnitude=8))
 @settings(max_examples=1000)
 def test_jvz_smallz(v, z):
     test = jvz.jvz(v, z)
