@@ -5,7 +5,7 @@ static inline T ipow(T base, int n) {
     n = - n;
   }
   if (n == 0) {
-    return base;
+    return 1.0;
   } else if (n == 1) {
     return base;
   } else if (n % 2 == 0) {
