@@ -1,5 +1,6 @@
 **/__pycache__/*
 **/.hypothesis/*
+**/.vscode/*`
 **/.pytest_cache/*
 **/*html
 **/*.so

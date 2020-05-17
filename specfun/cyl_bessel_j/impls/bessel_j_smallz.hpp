@@ -7,12 +7,7 @@ template <class OrderType, class ArgType>
 ArgType bessel_j_smallz(OrderType v, const ArgType z) {
   using std::pow;
   using std::tgamma;
-  // if (v < 0) {
-  //   if (std::is_integral<OrderType>::value) {
-  //     v = -v; // Switch order to positive.
-  //     const int negative_order_factor = ipow(-1, v);
-  //   }
-  // }
+
   if (z == 0.0 && v == 0.0) {
     return 1;
   }
@@ -24,16 +19,20 @@ ArgType bessel_j_smallz(OrderType v, const ArgType z) {
   result += 1.0 / gamma_term;
 
   gamma_term *= v + 1;
-  result -= ipow(zhalf, 2) / gamma_term;
+  ArgType zhalf_squared = zhalf * zhalf;
+  result -= zhalf_squared / gamma_term;
+  ArgType zhalf_powered = zhalf_squared;
 
   for (int k = 2; k <= 20; k += 2) {
     factorial_term *= k;
     gamma_term *= v + k;
-    result += ipow(zhalf, 2 * k) / (factorial_term * gamma_term);
+    zhalf_powered *= zhalf_squared;
+    result += zhalf_powered / (factorial_term * gamma_term);
 
     factorial_term *= k + 1;
     gamma_term *= v + k + 1;
-    result -= ipow(zhalf, 2 * k + 2) / (factorial_term * gamma_term);
+    zhalf_powered *= zhalf_squared;
+    result -= zhalf_powered / (factorial_term * gamma_term);
   }
   return result * pow(zhalf, v);
 }
