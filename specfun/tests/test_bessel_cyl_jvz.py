@@ -3,7 +3,7 @@ import hypothesis.strategies as st
 
 from mpmath import besselj
 import numpy as np
-import interfaces.bessel_cyl_jvz as jvz
+import bessel as jvz
 
 
 @given(st.floats(min_value = 0.0, max_value = 200.0, allow_nan=False),
