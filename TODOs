@@ -1,0 +1,3 @@
+1. Implement/test asymptotic Bessel J properly.
+2. Implement continued-fraction-based recurrence across Bessel J of different orders.
+3. Possible vectorization/reuse of z-independent coefficients in vectorized evaluations of functions.
